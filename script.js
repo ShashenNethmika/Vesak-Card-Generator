@@ -51,7 +51,7 @@ downloadBtn.addEventListener('click', () => {
             clonedTexts.forEach(t => {
                 // --- මෙන්න මෙතැන 24px වෙනුවට 18px හෝ 20px දාලා බලන්න ---
                 // පින්තූරයේ අකුරු ලොකු වැඩි නම් මේ අගය තවත් අඩු කරන්න
-                t.style.fontSize = '18px';
+                t.style.fontSize = '14px';
             });
         }
     }).then(canvas => {
