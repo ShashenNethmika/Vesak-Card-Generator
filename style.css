@@ -260,10 +260,13 @@ body {
 #card-preview {
     position: relative;
     width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
     background-color: #ffffff;
-    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+    /* අලුත්: කාඩ් එකේ පළල හඳුනා ගැනීමට */
+    container-type: inline-size;
 }
 
 #card-image {
@@ -275,26 +278,26 @@ body {
 .card-text {
     position: absolute;
     font-family: 'Abhaya Libre', serif;
-    font-size: 20px;
+    /* අලුත්: කාඩ් එක පොඩි වෙද්දී අකුරුත් ස්වයංක්‍රීයව පොඩි වීම (3 Container Query Width) */
+    font-size: 3cqw;
     font-weight: 800;
     color: #1f2937;
     white-space: nowrap;
     text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.8);
+    /* අලුත්: අකුරු කොච්චර ලොකු වුණත් හරියටම තිත් පේළිය මත සෙන්ටර් වීම */
+    transform: translateY(-50%);
 }
 
-@media (min-width: 800px) {
-    .card-text {
-        font-size: 24px;
-    }
-}
+/* @media (min-width: 800px) කොටස දැන් අවශ්‍ය නැති නිසා මකා දැමිය හැක */
 
+/* transform එක යෙදූ නිසා top අගය මඳක් වෙනස් කළා */
 #display-to {
-    top: 67%;
+    top: 71%;
     left: 72%;
 }
 
 #display-from {
-    top: 77%;
+    top: 82%;
     left: 72%;
 }
 
@@ -344,12 +347,29 @@ body {
 }
 
 @keyframes heartPulse {
-    0% { transform: scale(1); }
-    15% { transform: scale(1.3); }
-    30% { transform: scale(1); }
-    45% { transform: scale(1.3); }
-    60% { transform: scale(1); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    15% {
+        transform: scale(1.3);
+    }
+
+    30% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.3);
+    }
+
+    60% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .heart-pulse {
