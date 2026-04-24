@@ -278,15 +278,22 @@ body {
 .card-text {
     position: absolute;
     font-family: 'Abhaya Libre', serif;
-    /* අලුත්: කාඩ් එක පොඩි වෙද්දී අකුරුත් ස්වයංක්‍රීයව පොඩි වීම (3 Container Query Width) */
-    font-size: 3cqw;
+    /* ✅ font-size JS එකෙන් handle වෙනවා — cqw lines දෙකම ඉවත් කරන්න */
+    font-size: 16px;
+    /* fallback only — JS override කරයි */
     font-weight: 800;
     color: #1f2937;
     white-space: nowrap;
     text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.8);
-    /* අලුත්: අකුරු කොච්චර ලොකු වුණත් හරියටම තිත් පේළිය මත සෙන්ටර් වීම */
     transform: translateY(-50%);
 }
+
+/* ✅ මේ media query ද ඉවත් කරන්න — JS handle කරනවා */
+/* @media (max-width: 600px) {
+    .card-text {
+        font-size: 2cqw;
+    }
+} */
 
 /* @media (min-width: 800px) කොටස දැන් අවශ්‍ය නැති නිසා මකා දැමිය හැක */
 
