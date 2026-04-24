@@ -30,36 +30,34 @@ templateBtns.forEach(btn => {
     });
 });
 
-// Download logic using html2canvas (Mobile Fix)
+// Download logic using html2canvas (Mobile & Size Fix)
 downloadBtn.addEventListener('click', () => {
     statusMsg.innerText = "Generating your card... Please wait.";
     statusMsg.style.color = "#ea580c";
     downloadBtn.disabled = true;
 
     html2canvas(cardPreview, {
-        scale: 2, // High resolution (1600px width)
+        scale: 2,
         useCORS: true,
         backgroundColor: null,
-        // --- MOBILE FIX: Capture කරන මොහොතේ පමණක් Desktop Size එකට හැරවීම ---
         onclone: (clonedDoc) => {
             const clonedPreview = clonedDoc.getElementById('card-preview');
-            // Desktop පළල බලහත්කාරයෙන් ලබා දීම
+            // මෙතැන සයිස් එක 800px ලෙසම තබන්න (එවිට පින්තූරයේ කොලිටිය රැකේ)
             clonedPreview.style.width = '800px';
             clonedPreview.style.maxWidth = '800px';
             clonedPreview.style.height = 'auto';
 
-            // Desktop අකුරු ප්‍රමාණය (24px) ලබා දීම
             const clonedTexts = clonedPreview.querySelectorAll('.card-text');
             clonedTexts.forEach(t => {
-                t.style.fontSize = '24px';
+                // --- මෙන්න මෙතැන 24px වෙනුවට 18px හෝ 20px දාලා බලන්න ---
+                // පින්තූරයේ අකුරු ලොකු වැඩි නම් මේ අගය තවත් අඩු කරන්න
+                t.style.fontSize = '18px';
             });
         }
-        // -------------------------------------------------------------------
     }).then(canvas => {
         const image = canvas.toDataURL("image/png", 1.0);
         const link = document.createElement('a');
 
-        // Custom File Name
         let toName = inputTo.value.trim();
         toName = toName.replace(/\s+/g, '_');
         let fileName = toName ? `${toName}_Vesak_Wish.png` : `Vesak_Wish_${Date.now()}.png`;
