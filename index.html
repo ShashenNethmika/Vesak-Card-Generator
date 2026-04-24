@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vesak Card Generator</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@600;800&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="bg-layer"></div>
+
+    <main class="main-container">
+        <div class="glass-panel">
+
+            <div class="controls-panel">
+                <div class="header-title">
+                    <span class="icon">🪷</span>
+                    <h1>Vesak Card Generator</h1>
+                </div>
+
+                <div class="inputs-container">
+                    <div class="input-group">
+                        <label>To (ලබන්නා):</label>
+                        <input type="text" id="input-to" placeholder="Enter recipient's name">
+                    </div>
+                    <div class="input-group">
+                        <label>From (එවන්නා):</label>
+                        <input type="text" id="input-from" placeholder="Enter your name">
+                    </div>
+                </div>
+
+                <div class="template-section">
+                    <label>Select Template:</label>
+                    <div class="template-grid" id="template-selector">
+                        <button class="template-btn active-template" data-image="Wish 01.png"
+                            style="--active-color: #0f766e; --bg-color: #324b54; --txt-color: #f8a849;">Design
+                            1</button>
+                        <button class="template-btn" data-image="Wish 02.png"
+                            style="--active-color: #f472b6; --bg-color: #fedbd6; --txt-color: #b65863;">Design
+                            2</button>
+                        <button class="template-btn" data-image="Wish 03.png"
+                            style="--active-color: #9333ea; --bg-color: #492b6a; --txt-color: #f4cf65;">Design
+                            3</button>
+                        <button class="template-btn" data-image="Wish 04.png"
+                            style="--active-color: #1f2937; --bg-color: #1d1d1b; --txt-color: #f58120;">Design
+                            4</button>
+                        <button class="template-btn" data-image="Wish 05.png"
+                            style="--active-color: #059669; --bg-color: #2a6857; --txt-color: #c6e5b1;">Design
+                            5</button>
+                        <button class="template-btn" data-image="Wish 06.png"
+                            style="--active-color: #3b82f6; --bg-color: #01416a; --txt-color: #86d7f8;">Design
+                            6</button>
+                    </div>
+                </div>
+
+                <button id="download-btn" class="btn-download">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    Download Card
+                </button>
+                <p id="status-msg" class="status-msg"></p>
+            </div>
+
+            <div class="preview-panel">
+                <div class="preview-header">
+                    <h2>Live Preview</h2>
+                    <span class="badge">HQ Preview</span>
+                </div>
+
+                <div class="preview-wrapper">
+                    <div id="card-preview" class="card-preview">
+                        <img id="card-image" src="Wish 01.png" alt="Vesak Card">
+                        <span id="display-to" class="card-text"></span>
+                        <span id="display-from" class="card-text"></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+
+
+    <div id="donate-modal" class="modal">
+        <div class="modal-content" id="modal-content">
+            <button id="close-modal" class="close-btn">✕</button>
+            <h3>Support My Work 🪷</h3>
+            <p class="modal-text">If you enjoyed using this Vesak Card Generator, consider buying me a coffee or sending
+                a small donation to support future projects!</p>
+
+            <div class="qr-container">
+                <img src="donate-qr.jpg" alt="Donation QR Code"
+                    onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%23fed7aa\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' font-family=\'sans-serif\' font-size=\'14\' fill=\'%23c2410c\' text-anchor=\'middle\' dy=\'.3em\'%3EAdd donate-qr.png%3C/text%3E%3C/svg%3E'">
+            </div>
+
+            <p class="modal-footer-text">Scan this QR code using your Banking App, LANKAQR, or Crypto Wallet.</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <button id="donate-btn" class="btn-donate">☕ Tea Ekak Bonna Kiyak Hari Denna 🥲</button>
+        <div class="footer-content">
+            <p>Made By <a href="https://linktr.ee/Shashen_Nethmika" target="_blank" rel="noopener noreferrer">Shashen
+                    Nethmika</a> <span class="heart-pulse">❤️</span></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
