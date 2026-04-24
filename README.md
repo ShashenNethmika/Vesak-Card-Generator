@@ -1,36 +1,41 @@
 # 🪷 Vesak Card Generator
 
-A beautiful, interactive web-based tool to create and download personalized Vesak greeting cards. This project is designed with a modern **Glassmorphism UI** and focuses on ease of use and high-quality output.
+A modern, responsive web application that allows users to create personalized **Vesak Greeting Cards** in seconds. Choose from multiple designs, add custom names, and download your high-quality card instantly.
 
-## 🌟 Features
+### 🔗 [Live Preview](https://shashennethmika.github.io/Vesak-Card-Generator/)
 
-- **6 Unique Templates:** Choose from six different artistic Vesak designs, each with its own color theme.
-- **Real-time Live Preview:** See exactly how your card looks as you type the names.
-- **Customizable Fields:** Add "To" (Recipient) and "From" (Sender) names easily.
-- **Smart Download:** - Downloads in High Quality (HQ) using `html2canvas`.
-  - Dynamic File Naming: Files are automatically named based on the recipient's name (e.g., `Amal_Vesak_Wish.png`).
-- **Responsive Design:** Fully mobile-friendly UI.
-- **Donation System:** Built-in "Buy me a coffee" modal for supporters.
+---
 
-## 🚀 Live Demo
+## ✨ Features
 
-Check out the live project here: [https://shashennethmika.github.io/Vesak-Card-Generator]
+* **Live Preview:** See your changes in real-time as you type.
+* **Multiple Templates:** 6 uniquely designed artistic templates to choose from.
+* **Custom Branding:** Add "To" and "From" names with specialized Sinhala/English font support.
+* **High-Quality Download:** Uses `html2canvas` to generate and download PNG images.
+* **Glassmorphism UI:** A sleek, modern design with a responsive layout.
 
-## 🛠️ Technologies Used
+## 📱 Mobile Users Note
+For the best experience on mobile devices, it is highly recommended to enable **"Desktop Site"** mode in your browser. This ensures the card layout and text alignment remain perfect during the image generation process.
 
-- **HTML5:** Semantic structure.
-- **Custom CSS3:** Modern UI with Glassmorphism, animations, and responsive layouts (No external frameworks used for clean code).
-- **JavaScript (ES6):** Logic for live preview, template switching, and modal handling.
-- **[html2canvas](https://html2canvas.hertzen.com/):** For rendering the HTML div into a downloadable image.
-- **Google Fonts:** Used 'Poppins' and 'Abhaya Libre' for professional typography.
+## 🛠️ Tech Stack
 
-## 📂 Project Structure
+* **HTML5:** Semantic structure.
+* **CSS3:** Custom properties (CSS variables), Flexbox, Grid, and Glassmorphism effects.
+* **JavaScript (ES6):** DOM manipulation and event handling.
+* **html2canvas:** To convert HTML elements into downloadable images.
+* **Google Fonts:** Using *Poppins* for UI and *Abhaya Libre* for the traditional card feel.
 
-```text
-├── index.html       # Main structure
-├── style.css       # Custom styling and animations
-├── script.js       # App logic and download handling
-├── Wish 01.png     # Card Template 1
-├── Wish 02.png     # Card Template 2
-├── ...             # Other assets
-└── donate-qr.png   # Your Donation QR code
+## 🚀 How to Use
+1.  Enter the recipient's name in the **"To"** field.
+2.  Enter your name in the **"From"** field.
+3.  Select your favorite design from the **Template Grid**.
+4.  Click **"Download Card"** to save the image to your device.
+
+## 👨‍💻 Developed By
+**Shashen Nethmika** 
+Connect with me:
+* [Linktree](https://linktr.ee/Shashen_Nethmika)
+* [GitHub Profile](https://github.com/shashennethmika)
+
+---
+*If you find this project helpful, feel free to give it a ⭐!*
