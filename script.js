@@ -30,42 +30,36 @@ templateBtns.forEach(btn => {
     });
 });
 
-// Download logic using html2canvas
+// Download logic using html2canvas (Mobile Fix)
 downloadBtn.addEventListener('click', () => {
     statusMsg.innerText = "Generating your card... Please wait.";
     statusMsg.style.color = "#ea580c";
     downloadBtn.disabled = true;
 
-    const originalWidth = cardPreview.style.width;
-    const originalHeight = cardPreview.style.height;
-    const originalMaxWidth = cardPreview.style.maxWidth;
-
-    const rect = cardPreview.getBoundingClientRect();
-    cardPreview.style.width = rect.width + 'px';
-    cardPreview.style.maxWidth = rect.width + 'px';
-    cardPreview.style.height = rect.height + 'px';
-
-    const texts = document.querySelectorAll('.card-text');
-    const originalFontSizes = [];
-    texts.forEach((t, i) => {
-        originalFontSizes[i] = t.style.fontSize;
-        t.style.fontSize = window.getComputedStyle(t).fontSize;
-    });
-
     html2canvas(cardPreview, {
-        scale: 2,
+        scale: 2, // High resolution (1600px width)
         useCORS: true,
-        backgroundColor: null
+        backgroundColor: null,
+        // --- MOBILE FIX: Capture කරන මොහොතේ පමණක් Desktop Size එකට හැරවීම ---
+        onclone: (clonedDoc) => {
+            const clonedPreview = clonedDoc.getElementById('card-preview');
+            // Desktop පළල බලහත්කාරයෙන් ලබා දීම
+            clonedPreview.style.width = '800px';
+            clonedPreview.style.maxWidth = '800px';
+            clonedPreview.style.height = 'auto';
+
+            // Desktop අකුරු ප්‍රමාණය (24px) ලබා දීම
+            const clonedTexts = clonedPreview.querySelectorAll('.card-text');
+            clonedTexts.forEach(t => {
+                t.style.fontSize = '24px';
+            });
+        }
+        // -------------------------------------------------------------------
     }).then(canvas => {
-
-        cardPreview.style.width = originalWidth;
-        cardPreview.style.maxWidth = originalMaxWidth;
-        cardPreview.style.height = originalHeight;
-        texts.forEach((t, i) => { t.style.fontSize = originalFontSizes[i]; });
-
         const image = canvas.toDataURL("image/png", 1.0);
         const link = document.createElement('a');
 
+        // Custom File Name
         let toName = inputTo.value.trim();
         toName = toName.replace(/\s+/g, '_');
         let fileName = toName ? `${toName}_Vesak_Wish.png` : `Vesak_Wish_${Date.now()}.png`;
@@ -80,11 +74,6 @@ downloadBtn.addEventListener('click', () => {
 
         setTimeout(() => { statusMsg.innerText = ""; }, 4000);
     }).catch(err => {
-        cardPreview.style.width = originalWidth;
-        cardPreview.style.maxWidth = originalMaxWidth;
-        cardPreview.style.height = originalHeight;
-        texts.forEach((t, i) => { t.style.fontSize = originalFontSizes[i]; });
-
         console.error("Error generating image:", err);
         statusMsg.innerText = "Error creating image. Please try again.";
         statusMsg.style.color = "#dc2626";
