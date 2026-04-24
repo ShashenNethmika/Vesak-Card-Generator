@@ -9,6 +9,23 @@ const downloadBtn = document.getElementById('download-btn');
 const cardPreview = document.getElementById('card-preview');
 const statusMsg = document.getElementById('status-msg');
 
+// ✅ FIX: Font size dynamically card width ට අනුව set කිරීම
+function updateTextSize() {
+    const cardWidth = cardPreview.offsetWidth;
+    // Card width එකෙන් 3% — mobile/desktop දෙකේදීම proportional
+    const fontSize = Math.max(8, cardWidth * 0.03);
+    displayTo.style.fontSize = fontSize + 'px';
+    displayFrom.style.fontSize = fontSize + 'px';
+}
+
+// Window resize වෙද්දී + image load වෙද්දී update කරන්න
+window.addEventListener('resize', updateTextSize);
+cardImage.addEventListener('load', updateTextSize);
+// Page load වෙද්දී ටිකක් delay දීලා run කරන්න (layout settle වෙන්න)
+window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(updateTextSize, 100);
+});
+
 // Real-time text update
 inputTo.addEventListener('input', (e) => {
     displayTo.innerText = e.target.value;
@@ -18,19 +35,16 @@ inputFrom.addEventListener('input', (e) => {
     displayFrom.innerText = e.target.value;
 });
 
-// Template switching logic (Simplified!)
+// Template switching logic
 templateBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-        // Remove active class from all
         templateBtns.forEach(b => b.classList.remove('active-template'));
-
-        // Add active class to clicked
         btn.classList.add('active-template');
         cardImage.src = btn.getAttribute('data-image');
     });
 });
 
-// Download logic using html2canvas (Mobile & Size Fix)
+// Download logic using html2canvas
 downloadBtn.addEventListener('click', () => {
     statusMsg.innerText = "Generating your card... Please wait.";
     statusMsg.style.color = "#ea580c";
@@ -42,16 +56,15 @@ downloadBtn.addEventListener('click', () => {
         backgroundColor: null,
         onclone: (clonedDoc) => {
             const clonedPreview = clonedDoc.getElementById('card-preview');
-            // මෙතැන සයිස් එක 800px ලෙසම තබන්න (එවිට පින්තූරයේ කොලිටිය රැකේ)
             clonedPreview.style.width = '800px';
             clonedPreview.style.maxWidth = '800px';
             clonedPreview.style.height = 'auto';
 
+            // ✅ Download image ෙදී font size 800px card width ට proportion කරන්න
+            const downloadFontSize = Math.max(8, 800 * 0.03); // = 24px
             const clonedTexts = clonedPreview.querySelectorAll('.card-text');
             clonedTexts.forEach(t => {
-                // --- මෙන්න මෙතැන 24px වෙනුවට 18px හෝ 20px දාලා බලන්න ---
-                // පින්තූරයේ අකුරු ලොකු වැඩි නම් මේ අගය තවත් අඩු කරන්න
-                t.style.fontSize = '5px';
+                t.style.fontSize = downloadFontSize + 'px';
             });
         }
     }).then(canvas => {
@@ -84,19 +97,16 @@ const donateBtn = document.getElementById('donate-btn');
 const donateModal = document.getElementById('donate-modal');
 const closeModal = document.getElementById('close-modal');
 
-// Open Modal
 donateBtn.addEventListener('click', () => {
     donateModal.classList.add('show');
 });
 
-// Close Modal Function
 const hideModal = () => {
     donateModal.classList.remove('show');
 };
 
 closeModal.addEventListener('click', hideModal);
 
-// Close when clicking outside the popup
 donateModal.addEventListener('click', (e) => {
     if (e.target === donateModal) {
         hideModal();
