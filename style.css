@@ -301,6 +301,14 @@ body {
     left: 72%;
 }
 
+/* Mobile Phone වලදී පමණක් අකුරු කුඩා කිරීම */
+@media (max-width: 600px) {
+    .card-text {
+        font-size: 2cqw;
+        /* 3cqw වෙනුවට 2.2cqw හෝ 2cqw යොදා වෙනස බලන්න */
+    }
+}
+
 /* --- Footer --- */
 .footer {
     width: 100%;
