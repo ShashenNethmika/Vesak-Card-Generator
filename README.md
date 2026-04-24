@@ -2,8 +2,6 @@
 
 A beautiful, interactive web-based tool to create and download personalized Vesak greeting cards. This project is designed with a modern **Glassmorphism UI** and focuses on ease of use and high-quality output.
 
-![Vesak Card Generator Preview](https://via.placeholder.com/800x450?text=Vesak+Card+Generator+Preview) *(Note: Replace this with an actual screenshot of your site)*
-
 ## 🌟 Features
 
 - **6 Unique Templates:** Choose from six different artistic Vesak designs, each with its own color theme.
@@ -16,7 +14,7 @@ A beautiful, interactive web-based tool to create and download personalized Vesa
 
 ## 🚀 Live Demo
 
-Check out the live project here: [Your GitHub Pages Link Here]
+Check out the live project here: [https://shashennethmika.github.io/Vesak-Card-Generator]
 
 ## 🛠️ Technologies Used
 
