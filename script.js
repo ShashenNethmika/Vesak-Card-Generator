@@ -12,8 +12,9 @@ const statusMsg = document.getElementById('status-msg');
 // ✅ FIX: Font size dynamically card width ට අනුව set කිරීම
 function updateTextSize() {
     const cardWidth = cardPreview.offsetWidth;
-    // Card width එකෙන් 3% — mobile/desktop දෙකේදීම proportional
-    const fontSize = Math.max(8, cardWidth * 0.03);
+    if (!cardWidth) return;
+    // 1.8% — overflow නොවෙන්න ම ප්‍රමාණවත්
+    const fontSize = Math.max(6, cardWidth * 0.018);
     displayTo.style.fontSize = fontSize + 'px';
     displayFrom.style.fontSize = fontSize + 'px';
 }
@@ -21,10 +22,10 @@ function updateTextSize() {
 // Window resize වෙද්දී + image load වෙද්දී update කරන්න
 window.addEventListener('resize', updateTextSize);
 cardImage.addEventListener('load', updateTextSize);
-// Page load වෙද්දී ටිකක් delay දීලා run කරන්න (layout settle වෙන්න)
-window.addEventListener('DOMContentLoaded', () => {
-    setTimeout(updateTextSize, 100);
-});
+// Multiple timeouts — layout settle වෙන්න guaranteed කිරීම
+setTimeout(updateTextSize, 0);
+setTimeout(updateTextSize, 200);
+setTimeout(updateTextSize, 500);
 
 // Real-time text update
 inputTo.addEventListener('input', (e) => {
@@ -61,7 +62,7 @@ downloadBtn.addEventListener('click', () => {
             clonedPreview.style.height = 'auto';
 
             // ✅ Download image ෙදී font size 800px card width ට proportion කරන්න
-            const downloadFontSize = Math.max(8, 800 * 0.03); // = 24px
+            const downloadFontSize = Math.max(6, 800 * 0.018); // = 14.4px
             const clonedTexts = clonedPreview.querySelectorAll('.card-text');
             clonedTexts.forEach(t => {
                 t.style.fontSize = downloadFontSize + 'px';
